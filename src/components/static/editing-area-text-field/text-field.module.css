@@ -1,0 +1,66 @@
+.taskRedactorContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 16px;
+  background-color: #373634;
+  flex-grow: 1;
+  width: 100%;
+  overflow-y: auto;
+  box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 25%);
+}
+
+.task {
+  overflow-y: auto;
+  margin: 20px;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.actionButton {
+  width: 150px;
+  height: 48px;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.actionButton.update {
+  background-color: #6571b6;
+  color: #fff;
+}
+
+.actionButton.update:hover {
+  background-color: #7d8ce2;
+}
+
+.disabled {
+  background-color: #6c6c6a;
+  pointer-events: none;
+}
+
+.helpText {
+  color: #555350;
+  user-select: none;
+  font-size: 14px;
+}
+
+.actionButton.delete {
+  background-color: #864a4a;
+}
+
+.actionButton.delete:hover {
+  background-color: #e25555;
+}

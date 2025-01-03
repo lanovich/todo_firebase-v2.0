@@ -1,0 +1,73 @@
+.taskItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #E8E6E3;
+  padding: 8px 0;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  color: #E8E6E3;
+  gap: 8px;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  appearance: none;
+  border: 2px solid #555350;
+  border-radius: 4px;
+  background-color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.checkbox:checked {
+  background-color: #E8E6E3;
+  border-color: #555350;
+}
+
+.checkbox:checked + .taskLink {
+  color: #777;
+}
+
+.checkbox:checked::after {
+  content: '✓';
+  color: #555350;
+  font-size: 12px;
+  display: block;
+  line-height: 1;
+}
+
+
+.taskLink {
+  text-decoration: none;
+  color:#E8E6E3;
+  cursor: pointer;
+}
+
+.currentTaskLink {
+  color:#a3cafc;
+  cursor: pointer;
+}
+
+.currentTaskLink:after {
+  content: ' 👈';
+  text-decoration: none;
+}
+
+.taskLink:hover::after {
+  content: ' 👈';
+  text-decoration: none;
+}
+
+.taskTime {
+  font-size: 12px;
+  margin-right: 20px;
+  color: #555350;
+}
