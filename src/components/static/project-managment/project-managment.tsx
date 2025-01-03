@@ -10,7 +10,7 @@ interface ProjectManagmentProps {
 export const ProjectManagment: React.FC<ProjectManagmentProps> = () => {
   return (
     <aside className={styles.container}>
-      <InputField placeholder="Поиск проекта" />
+      <InputField placeholder="В разработке, пока что поиск по задачам" />
       <ProjectList />
       <Description>Список проектов</Description>
     </aside>

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useRequestUpdateTodo, useRequestDeleteTodo } from "../../../hooks";
+import { useNavigate } from "react-router-dom";
 import styles from "./text-field.module.css";
 import { ModalWindow } from "../../shared";
 
@@ -14,6 +15,7 @@ export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
   const [updatedInputValue, setUpdatedInputValue] = useState(value);
   const { requestDeleteTodo } = useRequestDeleteTodo();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -48,6 +50,7 @@ export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
     if (taskId) {
       requestDeleteTodo(taskId);
       setIsModalOpen(false);
+      navigate("/");
     }
   };
 
@@ -109,13 +112,13 @@ export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
         </button>
 
         <ModalWindow
-        isOpen={isModalOpen}
-        title="Подтверждение удаления"
-        description="Вы уверены, что хотите удалить эту задачу?"
-        taskName={value}
-        onConfirm={handleDeleteTask}
-        onCancel={closeModal}
-      />
+          isOpen={isModalOpen}
+          title="Подтверждение удаления"
+          description="Вы уверены, что хотите удалить эту задачу?"
+          taskName={value}
+          onConfirm={handleDeleteTask}
+          onCancel={closeModal}
+        />
       </div>
     </div>
   );

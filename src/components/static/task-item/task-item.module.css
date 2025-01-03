@@ -49,11 +49,21 @@
   text-decoration: none;
   color:#E8E6E3;
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  display: inline-block;
 }
 
 .currentTaskLink {
   color:#a3cafc;
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  display: inline-block;
 }
 
 .currentTaskLink:after {

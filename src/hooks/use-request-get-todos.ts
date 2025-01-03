@@ -9,7 +9,6 @@ export const useRequestGetTodosList = () => {
     const todosDbRef = ref(db, 'projects/project1');
     return onValue(todosDbRef, (snapshot) => {
       const loadedTodos = snapshot.val() || {};
-      console.log(loadedTodos)
       setTodos(loadedTodos);
     });
   }, []);

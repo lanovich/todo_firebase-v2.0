@@ -7,7 +7,7 @@ export const ProjectList = () => {
 
       <div className={styles.listContainer}>
         {Array(4)
-          .fill("Название проекта")
+          .fill("В разработке")
           .map((text, index) => (
             <div key={index} className={styles.projectItem}>
               {text}
