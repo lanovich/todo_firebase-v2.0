@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom"; // Импортируем navigate
 import { useRequestUpdateTodo, useRequestDeleteTodo } from "../../../hooks";
-import { useNavigate } from "react-router-dom";
 import styles from "./text-field.module.css";
 import { ModalWindow } from "../../shared";
 
@@ -15,9 +15,9 @@ export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
   const [updatedInputValue, setUpdatedInputValue] = useState(value);
   const { requestDeleteTodo } = useRequestDeleteTodo();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate(); // Хук для навигации
 
   const enableUpdateTask = () => {
     setUpdatedInputValue(value);
@@ -50,7 +50,6 @@ export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
     if (taskId) {
       requestDeleteTodo(taskId);
       setIsModalOpen(false);
-      navigate("/");
     }
   };
 
@@ -61,6 +60,12 @@ export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    if (!taskId) {
+      navigate("/");
+    }
+  }, [taskId, navigate]);
 
   return (
     <div className={styles.taskRedactorContainer}>

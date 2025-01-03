@@ -1,5 +1,5 @@
 import { NavLink, useParams, useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./editing-area.module.css";
 import { Description } from "../../shared";
 import { TextField } from "../editing-area-text-field/text-field";
@@ -12,14 +12,13 @@ export const EditingArea: React.FC = () => {
   const { todos }: { todos: Todos } = useRequestGetTodosList();
   const navigate = useNavigate();
 
-  console.log("рендер редактирования");
-
   const task = taskId ? todos[taskId] : undefined;
 
-  if (taskId && !task) {
-    navigate("/", { replace: true });
-    return null;
-  }
+  useEffect(() => {
+    if (taskId && !task) {
+      navigate("/", { replace: true });
+    }
+  }, [taskId, task, navigate]);
 
   return (
     <aside className={styles.container}>
