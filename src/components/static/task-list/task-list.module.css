@@ -18,6 +18,10 @@
   }
 }
 
+.projectHeading {
+  color: #dba45b;
+}
+
 .actionButtons {
   display: flex;
   justify-content: space-between;

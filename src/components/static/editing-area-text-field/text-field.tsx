@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom"; // Импортируем navigate
+import { useNavigate, useParams } from "react-router-dom";
 import { useRequestUpdateTodo, useRequestDeleteTodo } from "../../../hooks";
 import styles from "./text-field.module.css";
 import { ModalWindow } from "../../shared";
+import { useModalStore } from "../../../store/useModalStore";
 
 interface TextFieldProps {
   taskId: string | undefined;
@@ -10,20 +11,29 @@ interface TextFieldProps {
 }
 
 export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
-  const { requestUpdateTodo } = useRequestUpdateTodo();
+  const { projectId } = useParams();
+  const { requestUpdateTodo } = useRequestUpdateTodo(projectId);
   const [isUpdatingTask, setIsUpdatingTask] = useState(false);
   const [updatedInputValue, setUpdatedInputValue] = useState(value);
-  const { requestDeleteTodo } = useRequestDeleteTodo();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { requestDeleteTodo } = useRequestDeleteTodo(projectId);
+  const { isModalOpen, setIsModalOpen, openModal, closeModal } =
+    useModalStore();
 
-  const inputRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate(); // Хук для навигации
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const navigate = useNavigate();
 
   const enableUpdateTask = () => {
     setUpdatedInputValue(value);
     setIsUpdatingTask(true);
     setTimeout(() => {
-      inputRef.current?.focus();
+      if (textAreaRef.current) {
+        autoResize(textAreaRef.current);
+        textAreaRef.current.focus();
+        textAreaRef.current.setSelectionRange(
+          textAreaRef.current.value.length,
+          textAreaRef.current.value.length
+        );
+      }
     }, 0);
   };
 
@@ -35,7 +45,8 @@ export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
     setIsUpdatingTask(false);
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    autoResize(event.target);
     setUpdatedInputValue(event.target.value);
   };
 
@@ -53,17 +64,16 @@ export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
     }
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const autoResize = (textarea: HTMLTextAreaElement) => {
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  console.log(projectId);
 
   useEffect(() => {
     if (!taskId) {
-      navigate("/");
+      navigate(-1);
     }
   }, [taskId, navigate]);
 
@@ -73,13 +83,12 @@ export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
         {isUpdatingTask ? (
           <>
             <form onSubmit={handleSubmit} id="updateTodo">
-              <input
-                ref={inputRef}
-                type="text"
+              <textarea
+                ref={textAreaRef}
                 value={updatedInputValue}
                 onChange={handleInputChange}
                 onBlur={handleBlur}
-                className={styles.taskInput}
+                className={styles.taskTextArea}
               />
             </form>
             <div className={styles.helpText}>

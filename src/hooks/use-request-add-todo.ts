@@ -1,9 +1,9 @@
 import { db } from "../firebase";
 import { ref, push } from 'firebase/database'
 
-export const useRequestAddTodo = () => {
+export const useRequestAddTodo = (projectId: string | undefined) => {
   const requestAddTodo = (value: string) => {
-    const todosDbRef = ref(db, 'projects/project1')
+    const todosDbRef = ref(db, `projects/${projectId}/todos`)
 
     push(todosDbRef, {
       todoValue: value,

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Todos } from "../types";
-import { useTodoListFilterStore } from "../store";
+import { useTodoListFilterStore } from "../store/useTodoFilterStore";
 
 export const useFilterTodos = (todos: Todos) => {
   const { filterParams } = useTodoListFilterStore();

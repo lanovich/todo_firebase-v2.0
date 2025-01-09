@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useTodoListFilterStore } from '../../../store';
-import debounce from 'lodash.debounce';
-import styles from './input-filed.module.css';
+import React, { useState, useEffect, useCallback } from "react";
+import { useTodoListFilterStore } from "../../../store/useTodoFilterStore";
+import debounce from "lodash.debounce";
+import styles from "./input-filed.module.css";
 
 interface InputFieldProps {
   placeholder?: string;

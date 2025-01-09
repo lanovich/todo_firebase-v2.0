@@ -1,31 +1,43 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import styles from "./App.module.css";
-import { EditingArea, ProjectManagment, TaskManagment, NotFoundPage } from "../components";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { EditingArea, NotFoundPage, TaskManagment } from "../components";
+import { Layout } from "./Layout";
 
-function AppContent() {
-  const location = useLocation();
-  const isNotFoundPage = location.pathname === "/404";
-
+const App: React.FC = () => {
   return (
-    <div className={styles.mainContainer}>
-      {!isNotFoundPage && <ProjectManagment />}
-      {!isNotFoundPage && <TaskManagment />}
+    <Router>
       <Routes>
-        <Route path="/" element={<EditingArea />} />
-        <Route path="/task/:taskId" element={<EditingArea />} />
+        <Route
+          path="/project/:projectId"
+          element={
+            <Layout>
+              <TaskManagment />
+              <EditingArea />
+            </Layout>
+          }
+        >
+          <Route path="task/:taskId" element={<EditingArea />} />
+        </Route>
+
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <TaskManagment />
+              <EditingArea />
+            </Layout>
+          }
+        />
+
         <Route path="/404" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <Router>
-      <AppContent />
     </Router>
   );
-}
+};
 
 export default App;

@@ -13,7 +13,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ id, time, todoValue }) => {
     <div className={styles.taskItem}>
       <label className={styles.checkboxLabel}>
         <input type="checkbox" className={styles.checkbox} />
-        <NavLink to={`/task/${id}`} className={({ isActive }) => (isActive ? styles.currentTaskLink : styles.taskLink)}>
+        <NavLink to={`task/${id}`} className={({ isActive }) => (isActive ? styles.currentTaskLink : styles.taskLink)}>
           {todoValue}
         </NavLink>
       </label>

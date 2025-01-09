@@ -24,6 +24,18 @@
   margin: 20px;
 }
 
+.taskTextArea {
+  all: unset;
+  display: block;
+  width: 100%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  resize: none;
+  font: inherit;
+  color: inherit;
+}
+
 .actionButton {
   width: 150px;
   height: 48px;

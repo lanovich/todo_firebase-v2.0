@@ -1,4 +1,4 @@
-import { NavLink, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import styles from "./editing-area.module.css";
 import { Description } from "../../shared";
@@ -9,24 +9,29 @@ import { Todos } from "../../../types";
 
 export const EditingArea: React.FC = () => {
   const { taskId } = useParams();
-  const { todos }: { todos: Todos } = useRequestGetTodosList();
+  const { projectId } = useParams();
+  const { todos }: { todos: Todos } = useRequestGetTodosList(projectId);
   const navigate = useNavigate();
 
   const task = taskId ? todos[taskId] : undefined;
 
   useEffect(() => {
     if (taskId && !task) {
-      navigate("/", { replace: true });
+      navigate(-1);
     }
   }, [taskId, task, navigate]);
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
   return (
     <aside className={styles.container}>
       <div className={styles.headerContainer}>
         {taskId ? (
-          <NavLink to={"/"} className={styles.goBackArrow}>
+          <button onClick={handleGoBack} className={styles.goBackArrow}>
             <ArrowBigLeft size={20} />
-          </NavLink>
+          </button>
         ) : null}
         <span className={styles.heading}>Область для редактирования</span>
       </div>

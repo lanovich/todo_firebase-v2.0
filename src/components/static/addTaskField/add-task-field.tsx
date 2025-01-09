@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRequestAddTodo } from "../../../hooks/use-request-add-todo";
 import styles from './add-task-field.module.css'
+import { useParams } from "react-router-dom";
 
 interface AddTaskFieldProps {
   className?: string;
@@ -11,7 +12,8 @@ interface AddTaskFieldProps {
 }
 
 export const AddTaskField: React.FC<AddTaskFieldProps> = ( { isAddingTask, setIsAddingTask, inputRef, enableAddTask } ) => {
-  const { requestAddTodo } = useRequestAddTodo();
+  const { projectId } = useParams();
+  const { requestAddTodo } = useRequestAddTodo(projectId);
   const [value, setValue] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
