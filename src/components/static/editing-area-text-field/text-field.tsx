@@ -69,8 +69,6 @@ export const TextField: React.FC<TextFieldProps> = ({ value, taskId }) => {
     textarea.style.height = textarea.scrollHeight + "px";
   };
 
-  console.log(projectId);
-
   useEffect(() => {
     if (!taskId) {
       navigate(-1);
