@@ -1,50 +1,150 @@
-# React + TypeScript + Vite
+# README для todoList
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Ru
 
-Currently, two official plugins are available:
+## Обзор проекта
+Этот проект представляет собой **инструмент управления задачами**, позволяющий пользователям создавать, редактировать, удалять задачи, осуществлять их поиск внутри проектов, которые точно также можно создавать и удалять. Он обладает современным пользовательским интерфейсом с поддержкой редактирования текста на месте, автоматической подгонкой высоты текстовых полей и адаптивным дизайном.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Функции
+- **Редактируемые текстовые поля:** Пользователи могут дважды щелкнуть на текст, чтобы включить режим редактирования.
+- **Автоматическая подгонка высоты:** Текстовые поля автоматически изменяют размер, чтобы текст отображался полностью.
+- **Подтверждение удаления:** Удаление задач сопровождается модальным окном подтверждения.
+- **Поиск по задачам:** Пользователи могут быстро находить задачи по ключевым словам.
+- **Адаптивный дизайн:** Интерфейс адаптируется к различным размерам экранов.
+- **Стилизация компонентов:** Используются CSS-модули для инкапсулированного стиля.
 
-## Expanding the ESLint configuration
+## Технологический стек
+- **Frontend:** React.js с использованием TypeScript (TSX)
+- **Стилизация:** CSS Modules
+- **Состояние:** Zustand, useState
+- **Маршрутизация:** React Router
+- **Хранилище данных:** Firebase Realtime Database
+- **Хостинг:** Firebase Hosting
+- **Запросы к API:** Пользовательские хуки для CRUD-операций
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Установка
+1. Клонируйте репозиторий:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Перейдите в директорию проекта:
+   ```bash
+   cd <project-directory>
+   ```
+3. Установите зависимости:
+   ```bash
+   npm install
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+## Использование
+1. Запустите сервер разработки:
+   ```bash
+   npm start
+   ```
+2. Откройте приложение в браузере по адресу `http://localhost:3000`.
+3. Ознакомьтесь с опубликованной версией по ссылке: [ToDoList Pro](https://todolistpro-d2ebc.web.app/).
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Структура проекта
+```plaintext
+├───.firebase  
+├───dist  
+│   └───assets  
+├───public  
+└───src  
+    ├───App  
+    ├───assets  
+    ├───components  
+    │   ├───shared  
+    │   │   ├───description  
+    │   │   ├───input-field  
+    │   │   └───modal-window  
+    │   └───static  
+    │       ├───addTaskField  
+    │       ├───editing-area  
+    │       ├───editing-area-text-field  
+    │       ├───not-found-page  
+    │       ├───project-list  
+    │       ├───project-management  
+    │       ├───task-item  
+    │       ├───task-list  
+    │       └───task-management  
+    ├───hooks  
+    └───store  
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Описание папок
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+#### .firebase
+Папка, содержащая конфигурацию и настройки для работы с Firebase, включая файлы проекта и базы данных.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+#### dist
+Папка для собранных (скомпилированных) файлов, которые готовятся для продакшена.  
+- **assets**: содержит статические файлы (например, изображения, стили, шрифты), которые используются на клиенте.
+
+#### public
+Папка, содержащая статические файлы, доступные для клиента, такие как `index.html` и другие ресурсы, которые не требуют сборки.
+
+#### src
+Основная папка с исходным кодом приложения.  
+
+- **App**  
+  Содержит корневой компонент приложения и связанные файлы.  
+
+- **assets**  
+  Папка для статических ресурсов (иконки, изображения, шрифты), которые используются в приложении.  
+
+- **components**  
+  Содержит компоненты интерфейса, разделенные на два типа:  
+  - **shared**  
+    Общие и переиспользуемые компоненты:  
+    - **description**: компонент для отображения описания.  
+    - **input-field**: поле ввода, используемое в формах.  
+    - **modal-window**: модальное окно для отображения всплывающих сообщений или взаимодействий.  
+  - **static**  
+    Компоненты, которые реализуют конкретные функциональности:  
+    - **addTaskField**: компонент для добавления задачи.  
+    - **editing-area**: область для редактирования задач.  
+    - **editing-area-text-field**: текстовое поле для редактирования задач.  
+    - **not-found-page**: страница для отображения ошибки "Не найдено".  
+    - **project-list**: компонент для отображения списка проектов.  
+    - **project-management**: компонент управления проектами.  
+    - **task-item**: элемент отдельной задачи.  
+    - **task-list**: компонент списка задач.  
+    - **task-management**: управление задачами.  
+
+- **hooks**  
+  Пользовательские хуки для управления состоянием и взаимодействия с API:  
+  - **useRequestUpdateTodo.ts**: хук для обновления задач.  
+  - **useRequestDeleteTodo.ts**: хук для удаления задач.  
+  - **useTaskSearch.ts**: хук для поиска задач.
+
+- **store**  
+  Содержит Zustand-стор для управления состоянием задач.  
+
+## Настройка
+
+### Интеграция Firebase
+1. Настройте Firebase в вашем проекте, следуя официальной [документации Firebase](https://firebase.google.com/docs).
+2. Обновите конфигурацию Firebase в проекте, чтобы подключиться к вашей базе данных и хостингу.
+
+## Известные проблемы
+1. **Переполнение текста:** Убедитесь, что стили текстовых полей (`white-space`, `word-wrap`) настроены правильно, чтобы избежать обрезания текста.
+2. **Адаптивный дизайн:** Рекомендуется дополнительное тестирование на устройствах с меньшим экраном.
+3. **Перегруженные компоненты:** В некоторых компонентах дуюблируются запросы к серверу и сами компоненты хранят в себе очень много похожих состояний.
+
+## Вклад в проект
+Мы приветствуем ваши предложения! Чтобы внести изменения:
+1. Форкните репозиторий.
+2. Создайте новую ветку:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Зафиксируйте свои изменения:
+   ```bash
+   git commit -m "Добавить новую функцию"
+   ```
+4. Отправьте изменения в ветку:
+   ```bash
+   git push origin feature-name
+   ```
+5. Откройте pull request.
