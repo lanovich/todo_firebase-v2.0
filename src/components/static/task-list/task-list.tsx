@@ -74,33 +74,43 @@ export const TaskList: React.FC<TaskListProps> = ({ todos }) => {
           <TaskItem key={id} time={time} todoValue={todoValue} id={id} />
         ))}
 
-        <AddTaskField
-          isAddingTask={isAddingTask}
-          setIsAddingTask={setIsAddingTask}
-          inputRef={inputRef}
-          enableAddTask={enableAddTask}
-        />
+        {projectId ? (
+          <AddTaskField
+            isAddingTask={isAddingTask}
+            setIsAddingTask={setIsAddingTask}
+            inputRef={inputRef}
+            enableAddTask={enableAddTask}
+          />
+        ) : (
+          <h5>Вы должны выбрать проект, чтобы добавлять задачи 👮‍♀️</h5>
+        )}
       </div>
 
       <div className={styles.actionButtons}>
         <button
           className={
-            isAddingTask
-              ? `${styles.disabled} ${styles.actionButton}`
-              : `${styles.actionButton} ${styles.green}`
+            projectId
+              ? isAddingTask
+                ? `${styles.disabled} ${styles.actionButton}`
+                : `${styles.actionButton} ${styles.green}`
+              : `${styles.disabled} ${styles.actionButton}`
           }
           onClick={enableAddTask}
         >
-          {isAddingTask ? `Напишите задачу` : `Добавить новую задачу`}
+          {projectId
+            ? isAddingTask
+              ? `Напишите задачу`
+              : `Добавить новую задачу`
+            : "Проект не выбран"}
         </button>
         <button
-          className={`${styles.actionButton} ${styles.sort}`}
+          className={projectId ? `${styles.actionButton} ${styles.sort}` : `${styles.disabled} ${styles.actionButton}`}
           onClick={toggleSort}
         >
           {isSorted ? (
             "Сброс сортировки"
           ) : (
-            <ArrowDownAZ size={32} color="#4d4646" />
+            <ArrowDownAZ size={32} color="#E8E6E3" />
           )}
         </button>
       </div>

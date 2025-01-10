@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: center;
   background-color: #232323;
+  box-sizing: border-box;
+  height: 49px;
   border-radius: 16px;
   padding: 10px;
   margin-bottom: 20px;
@@ -11,8 +13,8 @@
 
 .searchInput {
   width: 100%;
-  padding: 4px;
-  font-size: 14px;
+  padding: 2px;
+  font-size: 1em;
   background-color: #232323;
   color: #E8E6E3;
   border: none;

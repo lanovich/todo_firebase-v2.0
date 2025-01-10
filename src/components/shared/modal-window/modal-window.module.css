@@ -57,7 +57,7 @@
 .helpTextConfirmDelete {
   color: #97948f;
   user-select: none;
-  font-size: 14px;
+  font-size: 1em;
   text-decoration: line-through;
   white-space: pre-wrap;
   word-break: break-word;

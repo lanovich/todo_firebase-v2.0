@@ -33,7 +33,7 @@
   width: auto;
   height: 48px;
   border-radius: 16px;
-  font-size: 24px;
+  font-size: 1em;
   font-weight: bold;
   border: none;
   outline: none;
@@ -54,12 +54,12 @@
 }
 
 .actionButton.sort {
-  background-color: #746A6A;
+  background-color: #564c69;
   color: #E8E6E3;
 }
 
 .actionButton.sort:hover {
-  background-color: #6c6c6a;
+  background-color: rgb(136, 120, 165);
 }
 
 .disabled {

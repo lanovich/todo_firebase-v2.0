@@ -40,7 +40,7 @@
   width: 150px;
   height: 48px;
   border-radius: 16px;
-  font-size: 20px;
+  font-size: 1em;
   font-weight: bold;
   border: none;
   outline: none;
@@ -68,7 +68,7 @@
 .helpText {
   color: #555350;
   user-select: none;
-  font-size: 14px;
+  font-size: 0.75em;
 }
 
 .actionButton.delete {
