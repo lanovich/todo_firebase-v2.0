@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  width: 45vw;
+  height: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 95vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

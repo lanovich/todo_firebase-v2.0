@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import { ProjectManagment } from "../components";
+import { ProjectManagment } from "../features";
 
 interface LayoutProps {
   children: React.ReactNode;
